@@ -12,6 +12,7 @@ import AdminLogin from '../components/AdminLogin'
 import ManageUser from '../components/ManageUser'
 import ManageContest from '../components/ManageContest'
 import ManagePracticeSession from '../components/ManagePracticeSession'
+import CodeEditor from '../components/CodeEditor'
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ export default new Router({
       path: '/managepracticesession',
       name: 'ManagePracticeSession',
       component: ManagePracticeSession
+    },
+    {
+      path: '/codeeditor',
+      name: 'CodeEditor',
+      component: CodeEditor
     }
   ],
   mode: 'history'

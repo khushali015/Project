@@ -9,39 +9,9 @@
           <h1>Live Contests</h1>
         </div>
         <div class="row" style="padding-left: 10%;">
-          <!-- <router-link to="/login" class="col-sm-3 nav-link">
-            <h1>Codejam</h1><hr>
-            <p >sfdrvgfdv fdvgrgrfxdgr<br>dbfdgbfvg /frvgregrffregrrf<br>aksdbcjkaheuojh</p>
-          </router-link>
-          <router-link to="/login" class="col-sm-3 nav-link">
-              <h1>Realy Coding</h1><hr>
-              <p>sfdrvgfdv fdvgrgrfxdgr<br>dbfdgbfvg frvgregrffregrrf<br>aksdbcjkaheuojh</p>
-          </router-link>
-          <router-link to="/login" class="col-sm-3 nav-link">
-            <h1>Code Storm</h1><hr>
-            <p>sfdrvgfdv fdvgrgrfxdgr<br>dbfdgbfvg frvgregrffregrrf<br>aksdbcjkaheuojh</p>
-          </router-link>
-         </div>
-         <div class="row" style="padding-left: 10%;">
-          <router-link to="/login" class="col-sm-3 nav-link">
-            <h1>Code Rush</h1><hr>
-            <p>sfdrvgfdv fdvgrgrfxdgr<br>dbfdgbfvg frvgregrffregrrf<br>aksdbcjkaheuojh</p>
-          </router-link>
-          <router-link to="/login" class="col-sm-3 nav-link">
-              <h1>Debug</h1><hr>
-              <p>sfdrvgfdv fdvgrgrfxdgr<br>dbfdgbfvg frvgregrffregrrf<br>aksdbcjkaheuojh</p>
-          </router-link>
-          <router-link to="/login" class="col-sm-3 nav-link">
-            <h1>Code Hack</h1><hr>
-            <p>sfdrvgfdv fdvgrgrfxdgr<br>dbfdgbfvg frvgregrffregrrf<br>aksdbcjkaheuojh</p>
-          </router-link>
-         </div> -->
-          <button @click="component='Login'"
-                  v-for="contestName in contestNames"
-                  class="col-sm-3"
-                  style="font-size: 35px;">
+                <button @click="component='Login'" v-for="contestName in contestNames" class="col-sm-3" style="font-size: 35px;">
                   {{ contestName }}
-          </button>
+                </button>
         </div>
         <component v-bind:is="component"/>
      </div>

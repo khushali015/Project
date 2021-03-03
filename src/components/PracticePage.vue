@@ -8,28 +8,6 @@
         />
         <h1>Lab Sessions</h1>
       </div>
-      <!--<div class="row" style="padding-left: 10%;">
-          <div class="col-sm-3">
-            <h1>C</h1><hr>
-          </div>
-          <div class="col-sm-3">
-              <h1>PYTHON</h1><hr>
-          </div>
-          <div class="col-sm-3">
-            <h1>JAVA</h1><hr>
-          </div>
-        </div>
-        <div class="row" style="padding-left: 10%;">
-          <div class="col-sm-3">
-            <h1>ADA</h1><hr>
-          </div>
-          <div class="col-sm-3">
-              <h1>DS</h1><hr>
-          </div>
-          <div class="col-sm-3">
-            <h1>SP</h1><hr>
-          </div>
-        </div> -->
       <div class="row">
          <router-link to="./practicedetail"
                  class="col-sm-3"
@@ -38,16 +16,11 @@
                  {{ lab }}</router-link>
       </div>
     </div>
-    <!-- <component v-bind:is="component"/> -->
   </div>
 </template>
 
 <script>
-// import PracticeDetail from './PracticeDetail'
 export default {
-  // components: {
-  //   'PracticeDetail': PracticeDetail
-  // },
   data () {
     return {
       labs: ['C', 'JAVA', 'PYTHON', 'ADA', 'SP', 'DS'],

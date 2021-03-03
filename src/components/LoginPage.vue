@@ -36,25 +36,12 @@ export default {
   methods: {
     login: function () {
       this.$router.replace('/contestdetail')
-      //   document.getElementById('id01').style.display = 'none'
     },
     close: function () {
       this.$router.go('Contest')
-      //   document.getElementById('id01').style.display = 'none'
     }
   }
 }
-//   methods: {
-//     post: function () {
-//       this.$http.post('https://online-judge-453bd-default-rtdb.firebaseio.com/', {
-//         uname: this.uname,
-//         body: this.pwd
-//       }).then(function (data) {
-//         console.log(data)
-//         this.submitted = true
-//       })
-//     }
-//   }
 </script>
 <style scoped>
 input[type="text"],

@@ -1,9 +1,10 @@
 <template>
     <div class=".container">
       <div class="sidenav">
-        <router-link to="" class="row"><h5>User</h5></router-link><br>
-        <router-link to="" class="row"><h5>Live Contests</h5></router-link><br>
-        <router-link to="" class="row"><h5>Practice Session</h5></router-link>
+        <router-link to="" class="row"><h5>Manage Users</h5></router-link><br>
+        <router-link to="" class="row"><h5>Live Contests/Practice</h5></router-link><br>
+        <router-link to="" class="row"><h5>Question Master</h5></router-link><br>
+        <router-link to="" class="row"><h5>Submission Master</h5></router-link>
       </div>
       <div class="main">
       </div>
@@ -35,7 +36,7 @@ export default {
 }
 .sidenav {
   height: 100%;
-  width: 160px;
+  width: 170px;
   position: absolute;
   z-index: 1;
   top: 80px;

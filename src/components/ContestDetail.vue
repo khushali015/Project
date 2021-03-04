@@ -1,11 +1,11 @@
 <template>
   <div class=".container">
     <div class="sidenav">
-      <router-link to="" v-for="ques in questions" class="row"><h5>Question: {{ ques }}</h5></router-link><br>
+      <router-link to="" v-for="ques in questions" :key="ques" class="row"><h5>Question: {{ ques }}</h5></router-link><br>
       <router-link to="/codeeditor" class="row"><h5 style="background-color: gray;padding:5px;border:1px;border-radius:5px;">Submit</h5></router-link>
     </div>
     <div class="main">
-      <p>
+      <!-- <p>
         In Chefland, there is a very famous street where N types of street food
         (numbered 1 through N) are offered. For each valid i, there are Si
         stores that offer food of the i-th type, the price of one piece of food
@@ -61,7 +61,7 @@
 7 7 4</pre>
       <pre><b>Output</b>
 12
-0</pre>
+0</pre> -->
       
     </div>
   </div>

@@ -7,20 +7,60 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span
-        >
+          >×</span>
         <h1 class="avatar">INOJ</h1>
       </div>
       <div class="container">
         <input
           type="text"
-          v-model="contestid"
-          placeholder="Enter contest ID"
+          v-model="cid"
+          placeholder="Enter competitionID"
           required
-          style="width: 100%"
-        /><br />
-        <button v-if="this.contestid"
-                @click="add">Submit
+          style="width: 100%"><br />
+        <input
+          type="text"
+          v-model="compName"
+          placeholder="Enter competition name"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="date"
+          v-model="date"
+          placeholder="Enter Date"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="text"
+          v-model="description"
+          placeholder="Enter description"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="text"
+          v-model="conductedBy"
+          placeholder="ConductedBy"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="text"
+          v-model="type"
+          placeholder="Enter competition type"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="text"
+          v-model="dept"
+          placeholder="Enter Department"
+          required
+          style="width:100%;"> <br>
+        <button v-if="this.cid &&
+                      this.compName &&
+                      this.dept &&
+                      this.description &&
+                      this.date &&
+                      this.conductedBy &&
+                      this.type" @click="add">Submit
+                      
         </button>
       </div>
     </form>
@@ -29,7 +69,6 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
 import AdminPanel from './AdminPanel'
 
 export default {
@@ -38,35 +77,32 @@ export default {
   },
   data () {
     return {
-      contestid: null,
+      cid: null,
+      compName: null,
+      dept: null,
+      description: null,
+      date: null,
+      conductedBy: null,
+      type: null,
       component: ''
     }
   },
   methods: {
     add: function () {
-      this.$router.replace('/adminpanel')
+      // alert('User updated')
+      this.$router.replace('/contests')
     },
     close: function () {
       this.$router.go(-1)
     }
   }
 }
-//   methods: {
-//     post: function () {
-//       this.$http.post('https://online-judge-453bd-default-rtdb.firebaseio.com/', {
-//         uname: this.uname,
-//         body: this.pwd
-//       }).then(function (data) {
-//         console.log(data)
-//         this.submitted = true
-//       })
-//     }
-//   }
 </script>
 
 <style scoped>
 input[type="text"],
-input[type="password"] {
+input[type="number"],
+input[type="date"] {
   width: 100%;
   padding: 12px 20px;
   margin: 10px 0;

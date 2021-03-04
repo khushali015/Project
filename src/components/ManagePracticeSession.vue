@@ -27,7 +27,6 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
 import AdminPanel from './AdminPanel'
 
 export default {
@@ -42,14 +41,6 @@ export default {
   },
   methods: {
     add: function () {
-    //   firebase.auth().createUserWithDetails(this.uname, this.pwd, this.fname, this.mname, this.lname, this.dept, this.clg, this.phNo).then(
-    //     function (user) {
-    //       alert('User Added')
-    //     },
-    //     function (err) {
-    //       alert('oops..' + err.message)
-    //     }
-    //   )
       this.$router.replace('/adminpanel')
     },
     close: function () {
@@ -57,17 +48,6 @@ export default {
     }
   }
 }
-//   methods: {
-//     post: function () {
-//       this.$http.post('https://online-judge-453bd-default-rtdb.firebaseio.com/', {
-//         uname: this.uname,
-//         body: this.pwd
-//       }).then(function (data) {
-//         console.log(data)
-//         this.submitted = true
-//       })
-//     }
-//   }
 </script>
 
 <style scoped>

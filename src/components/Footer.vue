@@ -8,7 +8,7 @@
 export default{
   data () {
     return {
-      copyright: 'Copyright 2021 - Institute Onsite Judge'
+      copyright: 'Copyright 2021 - Institute Online Judge'
     }
   }
 }

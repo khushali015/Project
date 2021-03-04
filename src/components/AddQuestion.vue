@@ -7,45 +7,77 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span
-        >
+          >×</span>
         <h1 class="avatar">INOJ</h1>
-        <h6 class="avatar" style="color: #00a4aa">Please Login</h6>
       </div>
       <div class="container">
         <input
-          type="text"
-          v-model="uname"
-          placeholder="Enter Username"
+          type="number"
+          v-model="qid"
+          placeholder="Enter questionID"
           required
-          style="width: 100%"
-        /><br />
-        <button v-if="this.uname" @click="login">Login</button>
+          style="width: 100%"/><br />
+        <input
+          type="text"
+          v-model="cid"
+          placeholder="Enter competitionID"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="text"
+          v-model="description"
+          placeholder="Enter Description"
+          required
+          style="width:100%;"> <br>
+        <input
+          type="text"
+          v-model="time_limit"
+          placeholder="Enter time-limit"
+          required
+          style="width:100%;"> <br>
+        <button v-if="this.qid &&
+                      this.cid &&
+                      this.description &&
+                      this.time_limit" 
+                      @click="add">Submit                     
+        </button>
       </div>
     </form>
+    <component :is="component"/>
   </div>
 </template>
 
 <script>
+import AdminPanel from './AdminPanel'
+
 export default {
-  data() {
+  components: {
+    'AdminPanel': AdminPanel
+  },
+  data () {
     return {
-      uname: this.uname,
-    };
+      qid: null,
+      cid: null,
+      description: null,
+      time_limit: null,
+      component: ''
+    }
   },
   methods: {
-    login: function () {
-      this.$router.replace("/contestdetail");
+    add: function () {
+      // alert('User updated')
+      this.$router.replace('/questions')
     },
     close: function () {
-      this.$router.go("Contest");
-    },
-  },
-};
+      this.$router.go(-1)
+    }
+  }
+}
 </script>
+
 <style scoped>
 input[type="text"],
-input[type="password"] {
+input[type="number"] {
   width: 100%;
   padding: 12px 20px;
   margin: 10px 0;
@@ -57,7 +89,6 @@ input[type="password"] {
 input:focus {
   border: none;
 }
-/*set a style for the buttons*/
 button {
   background: linear-gradient(to left, #00e4bb, #ccc);
   color: black;
@@ -67,13 +98,13 @@ button {
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 25px;
+  border-radius: 15px;
   cursor: pointer;
   width: 100%;
 }
 /* set a hover effect for the button*/
 button:hover {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 /*centre the display image inside the container*/
 .imgcontainer {

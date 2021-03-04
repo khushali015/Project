@@ -12,6 +12,7 @@
          <router-link to="./practicedetail"
                  class="col-sm-3"
                  v-for="lab in labs"
+                 :key="lab"
                  style="font-size: 35px">
                  {{ lab }}</router-link>
       </div>

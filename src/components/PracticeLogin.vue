@@ -20,7 +20,6 @@
           required
           style="width: 100%"
         /><br />
-        <!-- <input type="password" v-model="pwd" placeholder="Enter Password" name="psw" required style="width:100%;"> <br> <br> -->
         <input type="checkbox" checked="checked" /> Remember me <br /><br />
         <button v-if="this.uname" @click="login">Login</button>
       </div>
@@ -38,25 +37,12 @@ export default {
   methods: {
     login: function () {
       this.$router.replace('Practice')
-      //   document.getElementById('id01').style.display = 'none'
     },
     close: function () {
       this.$router.replace('/')
-      //   document.getElementById('id01').style.display = 'none'
     }
   }
 }
-//   methods: {
-//     post: function () {
-//       this.$http.post('https://online-judge-453bd-default-rtdb.firebaseio.com/', {
-//         uname: this.uname,
-//         body: this.pwd
-//       }).then(function (data) {
-//         console.log(data)
-//         this.submitted = true
-//       })
-//     }
-//   }
 </script>
 
 <style scoped>

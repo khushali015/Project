@@ -7,35 +7,20 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span
-        >
+          >×</span>
         <h1 class="avatar">INOJ</h1>
-        <!-- <h6 class="avatar" style="color:#00a4aa;">Adding user</h6> -->
       </div>
       <div class="container">
         <input
-          type="text"
-          v-model="uname"
-          placeholder="Enter Username"
+          type="number"
+          v-model="uid"
+          placeholder="Enter UserID"
           required
-          style="width: 100%"
-        /><br />
-        <!-- <input
-          type="password"
-          v-model="pwd"
-          placeholder="Enter Password"
-          required
-          style="width:100%;"> <br>
+          style="width: 100%"><br />
         <input
           type="text"
           v-model="fname"
           placeholder="Enter FirstName"
-          required
-          style="width:100%;"> <br>
-        <input
-          type="text"
-          v-model="mname"
-          placeholder="Enter MiddleName"
           required
           style="width:100%;"> <br>
         <input
@@ -57,7 +42,8 @@
           required
           style="width:100%;"> <br>
         <input
-          type="text"
+          type="tel"
+          pattern="[0-9]{5}-[0-9]{5}"
           v-model="phNo"
           placeholder="Enter phone number"
           required
@@ -67,16 +53,15 @@
           v-model="compName"
           placeholder="Enter competition name"
           required
-          style="width:100%;"> <br> -->
-        <button v-if="this.uname" @click="add">Submit
-                      <!-- this.pwd &&
+          style="width:100%;"> <br>
+        <button v-if="this.uid &&
                       this.fname &&
-                      this.mname &&
                       this.lname &&
                       this.clg &&
                       this.dept &&
                       this.phNo &&
-                      this.compName" -->
+                      this.compName" @click="add">Submit
+                      
         </button>
       </div>
     </form>
@@ -85,7 +70,6 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
 import AdminPanel from './AdminPanel'
 
 export default {
@@ -94,10 +78,8 @@ export default {
   },
   data () {
     return {
-      uname: null,
-      pwd: null,
+      uid: null,
       fname: null,
-      mname: null,
       lname: null,
       clg: null,
       dept: null,
@@ -109,7 +91,7 @@ export default {
   methods: {
     add: function () {
       // alert('User updated')
-      this.$router.replace('/adminpanel')
+      this.$router.replace('/users')
     },
     close: function () {
       this.$router.go(-1)
@@ -120,7 +102,8 @@ export default {
 
 <style scoped>
 input[type="text"],
-input[type="password"] {
+input[type="number"],
+input[type="tel"] {
   width: 100%;
   padding: 12px 20px;
   margin: 10px 0;

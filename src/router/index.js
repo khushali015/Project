@@ -9,8 +9,13 @@ import ContestDetail from '../components/ContestDetail'
 import PracticeDetail from '../components/PracticeDetail'
 import AdminPanel from '../components/AdminPanel'
 import AdminLogin from '../components/AdminLogin'
-import ManageUser from '../components/ManageUser'
-import ManageContest from '../components/ManageContest'
+import AddUser from '../components/AddUser'
+import AddContest from '../components/AddContest'
+import AddQuestion from '../components/AddQuestion'
+import Users from '../components/Users'
+import Contests from '../components/Contests'
+import Questions from '../components/Questions'
+import Submissions from '../components/Submissions'
 import ManagePracticeSession from '../components/ManagePracticeSession'
 import CodeEditor from '../components/CodeEditor'
 
@@ -64,14 +69,39 @@ export default new Router({
       component: AdminPanel
     },
     {
-      path: '/manageuser',
-      name: 'ManageUser',
-      component: ManageUser
+      path: '/adduser',
+      name: 'AddUser',
+      component: AddUser
     },
     {
-      path: '/managecontest',
-      name: 'ManageContest',
-      component: ManageContest
+      path: '/addcontest',
+      name: 'AddContest',
+      component: AddContest
+    },
+    {
+      path: '/addquestion',
+      name: 'AddQuestion',
+      component: AddQuestion
+    },
+    {
+      path: '/users',
+      name: 'Users',
+      component: Users
+    },
+    {
+      path: '/contests',
+      name: 'Contests',
+      component: Contests
+    },
+    {
+      path: '/questions',
+      name: 'Questions',
+      component: Questions
+    },
+    {
+      path: '/submissions',
+      name: 'Submissions',
+      component: Submissions
     },
     {
       path: '/managepracticesession',

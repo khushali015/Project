@@ -7,19 +7,25 @@
         <router-link to="/submissions" class="row"><h5>Submission Master</h5></router-link>
       </div>
       <div class="main">
+        <div>
+        <label for="filterby"><h5>Filter By:</h5></label>
+        <select name="filterby" v-model="filter" style="margin-right: 20px">
+          <option v-for="filter in filterby" :key="filter">{{ filter }}</option>
+        </select>
+      </div>
       </div>
       <component :is="component"/>
     </div>
 </template>
 
 <script>
-// import ManageUser from './ManageUser'
 export default {
   components: {
-    // 'ManageUser': ManageUser
   },
   data () {
     return {
+      filter: "",
+      filterby: ["user", "question","contest"],
       component: ''
     }
   }
@@ -27,10 +33,17 @@ export default {
 </script>
 
 <style scoped>
+/* .nav-link {
+  color: black;
+  font-size: large;
+}
+.nav-link:hover {
+  color: #00e4bb;
+} */
 .main {
   position: absolute;
-  left:160px;
-  top:80px;
+  left:180px;
+  top:90px;
   right:0;
   bottom:0;
 }

@@ -7,16 +7,15 @@
         <router-link to="/submissions" class="row"><h5>Submission Master</h5></router-link>
       </div>
       <div class="main">
+        <router-link class="nav-link" to="/addcontest">Add Contest</router-link>
       </div>
       <component :is="component"/>
     </div>
 </template>
 
 <script>
-// import ManageUser from './ManageUser'
 export default {
   components: {
-    // 'ManageUser': ManageUser
   },
   data () {
     return {
@@ -27,10 +26,17 @@ export default {
 </script>
 
 <style scoped>
+.nav-link {
+  color: black;
+  font-size: large;
+}
+.nav-link:hover {
+  color: #00e4bb;
+}
 .main {
   position: absolute;
-  left:160px;
-  top:80px;
+  left:180px;
+  top:90px;
   right:0;
   bottom:0;
 }

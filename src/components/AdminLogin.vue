@@ -16,7 +16,7 @@
         <input
           type="text"
           v-model="uname"
-          placeholder="Enter Username"
+          placeholder="Enter ID"
           required
           style="width: 100%"
         /><br>

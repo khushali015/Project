@@ -16,7 +16,7 @@
         <input
           type="text"
           v-model="uname"
-          placeholder="Enter Username"
+          placeholder="Enter UserID"
           required
           style="width: 100%"
         /><br />
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     login: function () {
-      this.$router.replace('Practice')
+      this.$router.replace('practice')
     },
     close: function () {
       this.$router.replace('/')

@@ -15,7 +15,7 @@
       </div>
       <div id="editor">
         <editor
-          v-model="content"
+          v-model="blog.content"
           @init="editorInit"
           lang="c_cpp"
           theme="chrome"
@@ -25,7 +25,7 @@
       </div>
       <div class="buttons">
         <button>Run</button>
-        <button>Submit</button>
+        <button type="submit" @click="submit">Submit</button>
       </div>
       <div class="input">
         <textarea rows="5" cols="125"></textarea>
@@ -34,18 +34,32 @@
   </div>
 </template>
 <script src="src/js/ace.js" type="text/javascript" charset="utf-8"></script>
+// <script src="src/vue.config.js" type="text/javascript" charset="utf-8"></script>
 <script>
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+
 export default {
   data() {
     return {
-      content: "",
-      language: "",
-      languages: ["C", "C++", "Java", "Python", "C#"],
+      blog:
+      {
+        content: null,
+        language: null
+      },      
+      languages: ["C", "C++", "Java", "python3", "C#"],
       question: "",
       questions: [],
     };
   },
   methods: {
+    submit(e) {
+      axios.post("http://192.168.1.103:5000/get_result/",this.blog)
+      .then((result)=>{
+        console.warn(result)
+      })
+      e.preventDefault();
+    },
     editorInit: function () {
       require("brace/ext/language_tools"); //language extension prerequsite...
       require("brace/mode/html");

@@ -53,6 +53,7 @@ export default {
 .navbar {
   background: #414141;
   height: 80px;
+  width: 100%;
 }
 .navbar-nav {
   display: flex;

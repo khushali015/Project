@@ -7,19 +7,26 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span
-        >
+          >×</span>
         <h1 class="avatar">INOJ</h1>
       </div>
       <div class="container">
         <input
           type="text"
-          v-model="labname"
-          placeholder="Enter Lab Name"
+          v-model="coord_id"
+          placeholder="Enter ID"
           required
-          style="width: 100%"
-        /><br />
-        <button v-if="this.labname" @click="add">Submit</button>
+          style="width: 100%"><br />
+        <input
+          type="text"
+          v-model="competition_id"
+          placeholder="Enter FirstName"
+          required
+          style="width:100%;"> <br>
+        <button v-if="this.coord_id &&
+                      this.competition_id"
+                      @click="add">Submit                      
+        </button>
       </div>
     </form>
     <component :is="component"/>
@@ -35,13 +42,15 @@ export default {
   },
   data () {
     return {
-      labname: null,
+      coord_id: null,
+      competition_id: null,
       component: ''
     }
   },
   methods: {
     add: function () {
-      this.$router.replace('/adminpanel')
+      alert('Co-ordinator added successfully')
+      this.$router.replace('/users')
     },
     close: function () {
       this.$router.go(-1)
@@ -52,7 +61,9 @@ export default {
 
 <style scoped>
 input[type="text"],
-input[type="password"] {
+input[type="email"],
+input[type="number"],
+input[type="tel"] {
   width: 100%;
   padding: 12px 20px;
   margin: 10px 0;

@@ -5,7 +5,7 @@
       <router-link to="/codeeditor" class="row"><h5>Submit</h5></router-link><br />
     </div>
     <div class="main">
-      <!-- <p>
+      <p>
         In Chefland, there is a very famous street where N types of street food
         (numbered 1 through N) are offered. For each valid i, there are Si
         stores that offer food of the i-th type, the price of one piece of food
@@ -62,7 +62,7 @@
       >
       <pre><b>Output</b>
 12
-0</pre> -->
+0</pre>
     </div>
   </div>
 </template>
@@ -71,7 +71,8 @@
 export default {
   data(){
     return{
-      questions: [1,2,3]
+      questions: [1,2,3],
+      param: this.$route.params.name
     }
   },
   methods: {

@@ -7,38 +7,64 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span
-        >
+          >×</span>
         <h1 class="avatar">INOJ</h1>
-        <h6 class="avatar" style="color: #00a4aa">Please Login</h6>
+        <h6 class="avatar" style="color:#00a4aa;">Please Login for {{ details.compName }}</h6>
       </div>
       <div class="container">
         <input
           type="text"
-          v-model="uname"
+          v-model="details.userID"
           placeholder="Enter UserID"
           required
           style="width: 100%"
         /><br />
-        <button v-if="this.uname" @click="login">Login</button>
+        <button type="submit" v-if="details.userID" @click="login">Login</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      uname: this.uname,
+      details: {
+        userID: null,
+        compName: this.$route.params.name
+      }
     };
   },
   methods: {
-    login: function () {
-      this.$router.replace("/contestdetail");
+    login(e) {
+      axios
+        .post("http://127.0.0.1:5000/get_data/", this.details)
+        .then((response) => {
+          this.$router.replace("/contestdetail/"+this.$route.params.name);
+          if (response.data.stdout == "") {
+              this.$router.replace("/contestdetail/"+this.$route.params.name);
+          } else this.output = response.data.stdout;
+          // console.log(e);
+        });
+      e.preventDefault();
     },
+    // login(e) {
+    //   axios
+    //     .post("http://127.0.0.1:5000/get_data/", this.details)
+    //     .then((response) => {
+    //       if (response.data.stdout == "") {
+    //         // this.output = response.data.outcome + response.data.cmpinfo;
+    //         this.$router.replace("/contestdetail/"+this.$route.params.name);
+    //       } 
+    //       else 
+    //         this.$router.replace("/contestdetail/"+this.$route.params.name)
+    //       // console.log(e);
+    //     });
+    //   e.preventDefault();
+    // },
     close: function () {
-      this.$router.go("Contest");
+      this.$router.replace("/contest");
     },
   },
 };
@@ -57,7 +83,6 @@ input[type="password"] {
 input:focus {
   border: none;
 }
-/*set a style for the buttons*/
 button {
   background: linear-gradient(to left, #00e4bb, #ccc);
   color: black;

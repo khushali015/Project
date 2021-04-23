@@ -8,8 +8,7 @@
         </div>
         <div
           class="text1 col-sm-5 img-responsive"
-          style="text-align: justify; margin: 5%"
-        >
+          style="text-align: justify; margin: 5%">
           <h2>Programming</h2>
           <p>
             Programming is one of the major leads that plays an important role

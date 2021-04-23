@@ -7,96 +7,106 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span>
+          >×</span
+        >
         <h1 class="avatar">INOJ</h1>
       </div>
       <div class="container">
         <input
           type="text"
-          v-model="cid"
+          v-model="competition_id"
           placeholder="Enter competitionID"
           required
-          style="width: 100%"><br />
+          style="width: 100%"
+        /><br />
         <input
           type="text"
           v-model="compName"
           placeholder="Enter competition name"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="date"
           v-model="date"
           placeholder="Enter Date"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
           v-model="description"
           placeholder="Enter description"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
           v-model="conductedBy"
           placeholder="ConductedBy"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
-          v-model="type"
-          placeholder="Enter competition type"
-          required
-          style="width:100%;"> <br>
-        <input
-          type="text"
-          v-model="dept"
+          v-model="department"
           placeholder="Enter Department"
           required
-          style="width:100%;"> <br>
-        <button v-if="this.cid &&
-                      this.compName &&
-                      this.dept &&
-                      this.description &&
-                      this.date &&
-                      this.conductedBy &&
-                      this.type" @click="add">Submit
-                      
+          style="width: 100%"
+        />
+        <br />
+        <input type="checkbox" v-model="is_practice" /> Is it a practice contest ? <br /><br />
+
+        <button
+          v-if="
+            this.competition_id &&
+            this.compName &&
+            this.department &&
+            this.description &&
+            this.date &&
+            this.conductedBy"
+          @click="add">
+          Submit
         </button>
       </div>
     </form>
-    <component :is="component"/>
+    <component :is="component" />
   </div>
 </template>
 
 <script>
-import AdminPanel from './AdminPanel'
+import AdminPanel from "./AdminPanel";
 
 export default {
   components: {
-    'AdminPanel': AdminPanel
+    AdminPanel: AdminPanel,
   },
-  data () {
+  data() {
     return {
-      cid: null,
+      competition_id: null,
       compName: null,
-      dept: null,
+      department: null,
       description: null,
       date: null,
       conductedBy: null,
-      type: null,
-      component: ''
-    }
+      is_practice: null,
+      component: "",
+    };
   },
   methods: {
     add: function () {
-      // alert('User updated')
-      this.$router.replace('/contests')
+      alert('Contest added succesfully')
+      this.$router.replace("/contests");
     },
     close: function () {
-      this.$router.go(-1)
-    }
-  }
-}
+      this.$router.go(-1);
+    },
+  },
+};
 </script>
 
 <style scoped>

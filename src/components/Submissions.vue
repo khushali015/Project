@@ -2,7 +2,7 @@
     <div class=".container">
       <div class="sidenav">
         <router-link to="/users" class="row"><h5>Manage Users</h5></router-link><br>
-        <router-link to="/contests" class="row"><h5>Live Contests/Practice</h5></router-link><br>
+        <router-link to="/contests" class="row"><h5>Contests/Practice</h5></router-link><br>
         <router-link to="/questions" class="row"><h5>Question Master</h5></router-link><br>
         <router-link to="/submissions" class="row"><h5>Submission Master</h5></router-link>
       </div>

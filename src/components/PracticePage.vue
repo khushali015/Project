@@ -1,20 +1,23 @@
 <template>
   <div class=".container">
-    <div id="lab" class="jumbotron" style="background-color: white; padding-left: 10%">
+    <div
+      id="lab"
+      class="jumbotron"
+      style="background-color: white; padding-left: 10%">
       <div class="row" style="padding-left: 2%">
         <img
           :src="require('../assets/trophy.png')"
-          style="height: 3%; width: 3%"
-        />
+          style="height: 3%; width: 3%"/>
         <h1>Lab Sessions</h1>
       </div>
       <div class="row">
-         <router-link to="./practicedetail"
-                 class="col-sm-3"
-                 v-for="lab in labs"
-                 :key="lab"
-                 style="font-size: 35px">
-                 {{ lab }}</router-link>
+        <router-link
+          :to="lab.routerURL"
+          v-for="lab in labs"
+          :key="lab.name"
+          class="col-sm-3"
+          style="font-size: 35px">
+          {{ lab.labname }}</router-link>
       </div>
     </div>
   </div>
@@ -22,20 +25,41 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      labs: ['C', 'JAVA', 'PYTHON', 'ADA', 'SP', 'DS'],
-      component: ''
-    }
-  }
-}
+      labs: [
+        {
+          labname: "C",
+          routerURL: "/practicedetail/c",
+        },
+        {
+          labname: "JAVA",
+          routerURL: "/practicedetail/java",
+        },
+        {
+          labname: "PYTHON",
+          routerURL: "/practicedetail/python",
+        },
+        {
+          labname: "ADA",
+          routerURL: "/practicedetail/ada",
+        },
+        {
+          labname: "SP",
+          routerURL: "/practicedetail/sp",
+        },
+      ],
+      component: "",
+    };
+  },
+};
 </script>
 
-<style>
+<style scoped>
 h1 {
   text-align: center;
 }
-a:hover{
+a:hover {
   text-decoration: none;
   color: black;
   opacity: 0.8;
@@ -48,7 +72,7 @@ a:hover{
   background: linear-gradient(to top, #00e4bb, #ccc);
   text-decoration: none;
   color: black;
-  text-align:  center;
+  text-align: center;
 }
 /*set a style for the buttons*/
 button {
@@ -67,7 +91,7 @@ button {
 button:hover {
   opacity: 0.8;
 }
-.router-link:hover{
+.router-link:hover {
   text-decoration: none;
 }
 </style>

@@ -12,56 +12,69 @@
       </div>
       <div class="container">
         <input
-          type="number"
-          v-model="uid"
+          type="text"
+          v-model="user_id"
           placeholder="Enter UserID"
           required
           style="width: 100%"><br />
         <input
+          type="password"
+          v-model="password"
+          placeholder="Enter password"
+          required
+          style="width: 100%"><br />
+        <input
           type="text"
-          v-model="fname"
+          v-model="first_name"
           placeholder="Enter FirstName"
           required
           style="width:100%;"> <br>
         <input
           type="text"
-          v-model="lname"
+          v-model="last_name"
           placeholder="Enter LastName"
           required
           style="width:100%;"> <br>
         <input
           type="text"
-          v-model="dept"
+          v-model="department"
           placeholder="Enter Department"
           required
           style="width:100%;"> <br>
         <input
           type="text"
-          v-model="clg"
+          v-model="college"
           placeholder="Enter College"
           required
           style="width:100%;"> <br>
         <input
           type="tel"
           pattern="[0-9]{5}-[0-9]{5}"
-          v-model="phNo"
+          v-model="phone_number"
           placeholder="Enter phone number"
           required
           style="width:100%;"> <br>
         <input
-          type="text"
-          v-model="compName"
-          placeholder="Enter competition name"
+          type="email"
+          v-model="email"
+          placeholder="Enter email ID"
           required
           style="width:100%;"> <br>
-        <button v-if="this.uid &&
-                      this.fname &&
-                      this.lname &&
-                      this.clg &&
-                      this.dept &&
-                      this.phNo &&
-                      this.compName" @click="add">Submit
-                      
+        <input
+          type="text"
+          v-model="role"
+          placeholder="Enter Role"
+          required
+          style="width:100%;"> <br>
+        <button v-if="this.user_id &&
+                      this.password &&
+                      this.first_name &&
+                      this.last_name &&
+                      this.college &&
+                      this.department &&
+                      this.phone_number &&
+                      this.email &&
+                      this.role" @click="add">Submit                      
         </button>
       </div>
     </form>
@@ -78,19 +91,21 @@ export default {
   },
   data () {
     return {
-      uid: null,
-      fname: null,
-      lname: null,
-      clg: null,
-      dept: null,
-      phNo: null,
-      compName: null,
+      user_id: null,
+      password: null,
+      first_name: null,
+      last_name: null,
+      college: null,
+      department: null,
+      phone_number: null,
+      email: null,
+      role: null,
       component: ''
     }
   },
   methods: {
     add: function () {
-      // alert('User updated')
+      alert('User added successfully')
       this.$router.replace('/users')
     },
     close: function () {
@@ -102,6 +117,8 @@ export default {
 
 <style scoped>
 input[type="text"],
+input[type="password"],
+input[type="email"],
 input[type="number"],
 input[type="tel"] {
   width: 100%;

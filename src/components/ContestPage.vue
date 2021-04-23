@@ -9,48 +9,72 @@
         <h1>Live Contests</h1>
       </div>
       <div class="row" style="padding-left: 10%">
-        <button
-          @click="component = 'Login'"
-          v-for="contestName in contestNames"
-          :key="contestName"
+        <router-link :to="contest.routerURL"
+          v-for="contest in contests"
+          :key="contest.name"
           class="col-sm-3"
-          style="font-size: 35px">
-          {{ contestName }}
-        </button>
+          style="font-size: 2.5vw">
+          {{ contest.name }}
+        </router-link>
       </div>
-      <component v-bind:is="component" />
     </div>
   </div>
 </template>
 
 <script>
-import Login from "./LoginPage";
+import axios from "axios";
+
 export default {
-  components: {
-    Login: Login,
-  },
   data() {
     return {
-      contestNames: [
-        "CodeJam",
-        "CodeRush",
-        "Debug",
-        "CodeRun",
-        "HashCode",
-        "SmartCode",
-      ],
-      contestDetails: [
-        "sfdrvgfdv fdvgrgrfxdg",
-        "sfdrvgfdv fdvgrgrfxdg",
-        "sfdrvgfdv fdvgrgrfxdg",
-        "sfdrvgfdv fdvgrgrfxdg",
-        "sfdrvgfdv fdvgrgrfxdg",
-        "sfdrvgfdv fdvgrgrfxdg",
+      contests: [
+        // {
+        //   name:"CodeJam",
+        //   contestID: "",
+        //   routerURL: "/login/CodeJam"
+        // },
+        // {
+        //   name:"CodeRush",
+        //   contestID: "",
+        //   routerURL: "/login/CodeRush"
+        // },
+        // {
+        //   name:"Debugging",
+        //   contestID: "",
+        //   routerURL: "/login/Debugging"
+        // },
+        // {
+        //   name:"CodeStorm",
+        //   contestID: "",
+        //   routerURL: "/login/CodeStorm"
+        // },
+        // {
+        //   name:"DigCode",
+        //   contestID: "",
+        //   routerURL: "/login/DigCode"
+        // }
       ],
       component: "",
-    };
+    }
   },
-};
+  mounted () {
+    axios
+      .get('https://127.0.0.1:5000/get_results')
+      .then(response => {
+        const newItem = {
+            id: response.data.id,
+            name: response.data.name,
+            routerURL: "/login/" + response.data.name
+        };
+        this.contests.push(newItem);
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+    } 
+  }
 </script>
 
 <style scoped>
@@ -65,10 +89,6 @@ li {
   color: #fff;
 }
 .col-sm-3 {
-  /* padding-top: 2%;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 2%; */
   text-decoration: none;
   color: black;
   padding: 2%;
@@ -76,5 +96,8 @@ li {
   border: none;
   border-radius: 10px;
   background: linear-gradient(to top, #00e4bb, #ccc);
+}
+.router-link:hover{
+  text-decoration: none;
 }
 </style>

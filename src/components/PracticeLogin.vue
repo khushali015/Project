@@ -7,36 +7,48 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span
-        >
+          >×</span>
         <h1 class="avatar">INOJ</h1>
         <h6 class="avatar" style="color:#00a4aa;">Please Login</h6>
       </div>
       <div class="container">
         <input
           type="text"
-          v-model="uname"
+          v-model="userid.userID"
           placeholder="Enter UserID"
           required
           style="width: 100%"
         /><br />
         <input type="checkbox" checked="checked" /> Remember me <br /><br />
-        <button v-if="this.uname" @click="login">Login</button>
+        <button v-if="this.userid.userID" @click="login">Login</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data () {
     return {
-      uname: null
+      userid: {
+         userID: null
+      }
     }
   },
   methods: {
-    login: function () {
-      this.$router.replace('practice')
+    login(e) {
+      // this.$router.replace('/practice') 
+      axios
+        .post("http://127.0.0.1:5000/get_data/", this.userid)
+        .then((response) => {
+          this.$router.replace('/practice') 
+          if (response.data.stdout == "") {
+            this.output = response.data.outcome + response.data.cmpinfo;
+          } else this.output = response.data.stdout;
+          // console.log(e);
+        });
+      e.preventDefault();
     },
     close: function () {
       this.$router.replace('/')

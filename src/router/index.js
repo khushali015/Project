@@ -10,13 +10,13 @@ import PracticeDetail from '../components/PracticeDetail'
 import AdminPanel from '../components/AdminPanel'
 import AdminLogin from '../components/AdminLogin'
 import AddUser from '../components/AddUser'
+import AddCoordinator from '../components/AddCoordinator'
 import AddContest from '../components/AddContest'
 import AddQuestion from '../components/AddQuestion'
 import Users from '../components/Users'
 import Contests from '../components/Contests'
 import Questions from '../components/Questions'
 import Submissions from '../components/Submissions'
-import ManagePracticeSession from '../components/ManagePracticeSession'
 import CodeEditor from '../components/CodeEditor'
 
 Vue.use(Router)
@@ -39,22 +39,22 @@ export default new Router({
       component: Practice
     },
     {
-      path: '/login',
+      path: '/login/:name',
       name: 'Login',
       component: Login
     },
     {
       path: '/signin',
-      name: 'login',
+      name: 'SignIn',
       component: PracticeLogin
     },
     {
-      path: '/contestdetail',
+      path: '/contestdetail/:name',
       name: 'ContestDetail',
       component: ContestDetail
     },
     {
-      path: '/practicedetail',
+      path: '/practicedetail/:name',
       name: 'PracticeDetail',
       component: PracticeDetail
     },
@@ -72,6 +72,11 @@ export default new Router({
       path: '/adduser',
       name: 'AddUser',
       component: AddUser
+    },
+    {
+      path: '/addcoordinator',
+      name: 'AddCoordinator',
+      component: AddCoordinator
     },
     {
       path: '/addcontest',
@@ -102,11 +107,6 @@ export default new Router({
       path: '/submissions',
       name: 'Submissions',
       component: Submissions
-    },
-    {
-      path: '/managepracticesession',
-      name: 'ManagePracticeSession',
-      component: ManagePracticeSession
     },
     {
       path: '/codeeditor',

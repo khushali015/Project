@@ -2,11 +2,12 @@
     <div class=".container">
       <div class="sidenav">
         <router-link to="/users" class="row"><h5>Manage Users</h5></router-link><br>
-        <router-link to="/contests" class="row"><h5>Live Contests/Practice</h5></router-link><br>
+        <router-link to="/contests" class="row"><h5>Contests/Practice</h5></router-link><br>
         <router-link to="/questions" class="row"><h5>Question Master</h5></router-link><br>
         <router-link to="/submissions" class="row"><h5>Submission Master</h5></router-link>
       </div>
       <div class="main">
+        <img :src="require('../assets/Admin.jpg')" id="image" width="780vw" />
       </div>
       <component :is="component"/>
     </div>
@@ -29,8 +30,8 @@ export default {
 <style scoped>
 .main {
   position: absolute;
-  left:160px;
-  top:80px;
+  left:30vw;
+  top:15vw;
   right:0;
   bottom:0;
 }

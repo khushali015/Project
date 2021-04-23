@@ -13,16 +13,10 @@
       <div class="container">
         <input
           type="number"
-          v-model="qid"
+          v-model="question_id"
           placeholder="Enter questionID"
           required
           style="width: 100%"/><br />
-        <input
-          type="text"
-          v-model="cid"
-          placeholder="Enter competitionID"
-          required
-          style="width:100%;"> <br>
         <input
           type="text"
           v-model="description"
@@ -35,8 +29,19 @@
           placeholder="Enter time-limit"
           required
           style="width:100%;"> <br>
-        <button v-if="this.qid &&
-                      this.cid &&
+          <!-- v-model -->
+        <input
+          type="file"
+          placeholder="Input File" 
+          required
+          style="width:100%;"> <br>
+          <!-- v-model -->
+        <input
+          type="file"
+          placeholder="Output File"
+          required
+          style="width:100%;"> <br>
+        <button v-if="this.question_id &&
                       this.description &&
                       this.time_limit" 
                       @click="add">Submit                     
@@ -56,16 +61,17 @@ export default {
   },
   data () {
     return {
-      qid: null,
-      cid: null,
+      question_id: null,
       description: null,
       time_limit: null,
+      input_file: "",
+      output_file: "",
       component: ''
     }
   },
   methods: {
     add: function () {
-      // alert('User updated')
+      alert('Question added successfully')
       this.$router.replace('/questions')
     },
     close: function () {
@@ -77,6 +83,7 @@ export default {
 
 <style scoped>
 input[type="text"],
+input[type="file"],
 input[type="number"] {
   width: 100%;
   padding: 12px 20px;

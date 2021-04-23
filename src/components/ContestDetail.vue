@@ -1,8 +1,8 @@
 <template>
   <div class=".container">
     <div class="sidenav">
-      <router-link to="" v-for="ques in questions" :key="ques" class="row"><h5>Question: {{ ques }}</h5></router-link><br>
-      <router-link to="/codeeditor" class="row"><h5 style="background-color: gray;padding:5px;border:1px;border-radius:5px;">Submit</h5></router-link>
+      <button @click="show(ques.id)" v-for="ques in questions" :key="ques" class="row"><h5>{{ ques.name }}</h5></button><br>
+      <router-link to="/codeeditor" class="row"><h5 style="padding:5px;border:1px;border-radius:5px;">Submit</h5></router-link>
     </div>
     <div class="main">
       <!-- <p>
@@ -62,7 +62,7 @@
       <pre><b>Output</b>
 12
 0</pre> -->
-      
+      <p style="font-size: 1vw;" v-if="this.detail">{{ detail }}</p>
     </div>
   </div>
 </template>
@@ -71,12 +71,38 @@
 export default {
   data(){
     return{
-      questions: [1,2]
+      questions: [],
+      detail: ""
     }
   },
   methods: {
-    
-  }
+    show(id){
+       this.questions.forEach(i =>{
+         if(i.id == id)
+         {
+           this.detail = i.questionDetail;
+           return;
+         }
+       })
+    }
+  },
+  mounted () {
+    axios
+      .get('https://127.0.0.1:5000/get_results')
+      .then(response => {
+        const newItem = {
+            id: response.data.id,
+            name: response.data.name,
+            questionDetail: response.data.detail
+        };
+        this.questions.push(newItem);
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+  } 
 }
 </script>
 <style scoped>

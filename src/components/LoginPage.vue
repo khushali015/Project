@@ -14,12 +14,12 @@
       <div class="container">
         <input
           type="text"
-          v-model="details.userID"
+          v-model="details.user_id"
           placeholder="Enter UserID"
           required
           style="width: 100%"
         /><br />
-        <button type="submit" v-if="details.userID" @click="login">Login</button>
+        <button type="submit" v-if="details.user_id" @click="login">Login</button>
       </div>
     </form>
   </div>
@@ -31,38 +31,27 @@ export default {
   data() {
     return {
       details: {
-        userID: null,
-        compName: this.$route.params.name
+        user_id: null,
+        comp_id: this.$route.params.comp_id,
+        is_admin: false
       }
     };
   },
   methods: {
     login(e) {
+      this.$router.replace('/contestdetail/'+this.$route.params.name);
       axios
-        .post("http://127.0.0.1:5000/get_data/", this.details)
+        .post("http://127.0.0.1:5000/authenticate/", this.details)
         .then((response) => {
-          this.$router.replace("/contestdetail/"+this.$route.params.name);
-          if (response.data.stdout == "") {
+          if (response.data.success == true) {
               this.$router.replace("/contestdetail/"+this.$route.params.name);
-          } else this.output = response.data.stdout;
+          }
+          // else
+          //   alert("")
           // console.log(e);
         });
       e.preventDefault();
     },
-    // login(e) {
-    //   axios
-    //     .post("http://127.0.0.1:5000/get_data/", this.details)
-    //     .then((response) => {
-    //       if (response.data.stdout == "") {
-    //         // this.output = response.data.outcome + response.data.cmpinfo;
-    //         this.$router.replace("/contestdetail/"+this.$route.params.name);
-    //       } 
-    //       else 
-    //         this.$router.replace("/contestdetail/"+this.$route.params.name)
-    //       // console.log(e);
-    //     });
-    //   e.preventDefault();
-    // },
     close: function () {
       this.$router.replace("/contest");
     },
@@ -84,21 +73,22 @@ input:focus {
   border: none;
 }
 button {
-  background: linear-gradient(to left, #00e4bb, #ccc);
-  color: black;
-  font-family: cursive;
-  letter-spacing: 0.15ch;
-  font-weight: bolder;
-  padding: 14px 20px;
-  margin: 8px 0;
+   background-color:  #00e4bb;
   border: none;
-  border-radius: 25px;
+  color: white;
+  align-content: center;
+  font-family:Arial, Helvetica, sans-serif;
+  letter-spacing: 0.15ch;
+  font-weight:500;
+  padding: 14px 20px;
+  margin: 15px 0;
+  border-radius: 15px;
   cursor: pointer;
   width: 100%;
 }
 /* set a hover effect for the button*/
 button:hover {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 /*centre the display image inside the container*/
 .imgcontainer {

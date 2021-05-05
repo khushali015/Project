@@ -13,72 +13,101 @@
       <div class="container">
         <input
           type="number"
-          v-model="question_id"
+          v-model="content.question_id"
           placeholder="Enter questionID"
           required
-          style="width: 100%"/><br />
+          style="width: 100%"
+        /><br />
         <input
           type="text"
-          v-model="description"
+          v-model="content.description"
           placeholder="Enter Description"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
-          v-model="time_limit"
+          v-model="content.time_limit"
           placeholder="Enter time-limit"
           required
-          style="width:100%;"> <br>
-          <!-- v-model -->
+          style="width: 100%"
+        />
+        <br />
+        <!-- v-model -->
         <input
           type="file"
-          placeholder="Input File" 
+          placeholder="Input/Output File"
+          id="files"
+          ref="files"
+          multiple
+          v-on:change="handleFileUploads()"
           required
-          style="width:100%;"> <br>
-          <!-- v-model -->
-        <input
-          type="file"
-          placeholder="Output File"
-          required
-          style="width:100%;"> <br>
-        <button v-if="this.question_id &&
-                      this.description &&
-                      this.time_limit" 
-                      @click="add">Submit                     
+          style="width: 100%"
+        />
+        <br />
+        <!-- v-model -->
+        <button
+          v-if="this.content.question_id && this.content.description && this.content.time_limit"
+          @click="add"
+        >
+          Submit
         </button>
       </div>
     </form>
-    <component :is="component"/>
+    <component :is="component" />
   </div>
 </template>
 
 <script>
-import AdminPanel from './AdminPanel'
-
+import AdminPanel from "./AdminPanel";
+import axios from 'axios';
 export default {
   components: {
-    'AdminPanel': AdminPanel
+    AdminPanel: AdminPanel
   },
-  data () {
+  data() {
     return {
-      question_id: null,
-      description: null,
-      time_limit: null,
-      input_file: "",
-      output_file: "",
-      component: ''
-    }
+      content: {
+        question_id: null,
+        description: null,
+        time_limit: null,
+        files: ''
+      },
+      component: "",
+    };
   },
   methods: {
-    add: function () {
-      alert('Question added successfully')
-      this.$router.replace('/questions')
+    add(e) {
+      let formData = new FormData();
+      for (var i = 0; i < this.files.length; i++) {
+        let file = this.files[i];
+
+        formData.append("files[" + i + "]", file);
+      }
+      axios
+        .post("http://127.0.0.1:5000/get_data/", this.content, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          if (response.data.stdout == "") {
+            alert("Question added successfully !!!");
+          }
+          this.$router.replace("/questions");
+          // console.log(e);
+        });
+      e.preventDefault();
+    },
+    handleFileUploads() {
+      this.files = this.$refs.files.files;
     },
     close: function () {
-      this.$router.go(-1)
-    }
-  }
-}
+      this.$router.go(-1);
+    },
+  },
+};
 </script>
 
 <style scoped>

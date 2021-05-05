@@ -13,106 +13,136 @@
       <div class="container">
         <input
           type="text"
-          v-model="user_id"
+          v-model="content.user_id"
           placeholder="Enter UserID"
           required
-          style="width: 100%"><br />
+          style="width: 100%"
+        /><br />
         <input
           type="password"
-          v-model="password"
+          v-model="content.password"
           placeholder="Enter password"
           required
-          style="width: 100%"><br />
+          style="width: 100%"
+        /><br />
         <input
           type="text"
-          v-model="first_name"
+          v-model="content.first_name"
           placeholder="Enter FirstName"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
-          v-model="last_name"
+          v-model="content.last_name"
           placeholder="Enter LastName"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
-          v-model="department"
+          v-model="content.department"
           placeholder="Enter Department"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
-          v-model="college"
+          v-model="content.college"
           placeholder="Enter College"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="tel"
-          pattern="[0-9]{5}-[0-9]{5}"
-          v-model="phone_number"
+          v-model="content.phone_number"
           placeholder="Enter phone number"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="email"
-          v-model="email"
+          v-model="content.email"
           placeholder="Enter email ID"
           required
-          style="width:100%;"> <br>
+          style="width: 100%"
+        />
+        <br />
         <input
           type="text"
-          v-model="role"
+          v-model="content.role"
           placeholder="Enter Role"
           required
-          style="width:100%;"> <br>
-        <button v-if="this.user_id &&
-                      this.password &&
-                      this.first_name &&
-                      this.last_name &&
-                      this.college &&
-                      this.department &&
-                      this.phone_number &&
-                      this.email &&
-                      this.role" @click="add">Submit                      
+          style="width: 100%"
+        />
+        <br />
+        <button
+          v-if="
+            this.content.user_id &&
+            this.content.password &&
+            this.content.first_name &&
+            this.content.last_name &&
+            this.content.college &&
+            this.content.department &&
+            this.content.phone_number &&
+            this.content.email &&
+            this.content.role
+          "
+          @click="add">
+          Submit
         </button>
       </div>
     </form>
-    <component :is="component"/>
+    <component :is="component" />
   </div>
 </template>
 
 <script>
-import AdminPanel from './AdminPanel'
-
+import AdminPanel from "./AdminPanel";
+import axios from 'axios';
 export default {
   components: {
-    'AdminPanel': AdminPanel
+    AdminPanel: AdminPanel,
   },
-  data () {
+  data() {
     return {
-      user_id: null,
-      password: null,
-      first_name: null,
-      last_name: null,
-      college: null,
-      department: null,
-      phone_number: null,
-      email: null,
-      role: null,
-      component: ''
-    }
+      content: {
+        user_id: null,
+        password: null,
+        first_name: null,
+        last_name: null,
+        college: null,
+        department: null,
+        phone_number: null,
+        email: null,
+        role: null,
+      },
+        component: ""
+    };
   },
   methods: {
-    add: function () {
-      alert('User added successfully')
-      this.$router.replace('/users')
+    add(e) {
+      axios
+        .post("http://127.0.0.1:5000/get_data/", this.content)
+        .then((response) => {
+          if (response.data.stdout == "") {
+            alert("User added successfully !!!");
+          }
+          this.$router.replace("/users");
+          // console.log(e);
+        });
+      e.preventDefault();
     },
     close: function () {
-      this.$router.go(-1)
+      this.$router.go(-1);
     }
-  }
-}
+  },
+};
 </script>
 
 <style scoped>

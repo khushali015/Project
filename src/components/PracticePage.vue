@@ -49,9 +49,31 @@ export default {
           routerURL: "/practicedetail/sp",
         },
       ],
+      data: {
+        is_admin: false,
+        action: "read",
+        is_practice: true
+      },
       component: "",
     };
   },
+  mounted () {
+    axios
+      .post('https://127.0.0.1:5000/competition_ops',this.data)
+      .then(response => {
+        const newItem = {
+            comp_id: response.data.comp_id,
+            name: response.data.name,
+            routerURL: "/practicedetail/" + response.data.comp_id
+        };
+        this.labs.push(newItem);
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+    } 
 };
 </script>
 

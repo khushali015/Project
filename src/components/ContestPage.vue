@@ -28,43 +28,48 @@ export default {
   data() {
     return {
       contests: [
-        // {
-        //   name:"CodeJam",
-        //   contestID: "",
-        //   routerURL: "/login/CodeJam"
-        // },
-        // {
-        //   name:"CodeRush",
-        //   contestID: "",
-        //   routerURL: "/login/CodeRush"
-        // },
-        // {
-        //   name:"Debugging",
-        //   contestID: "",
-        //   routerURL: "/login/Debugging"
-        // },
-        // {
-        //   name:"CodeStorm",
-        //   contestID: "",
-        //   routerURL: "/login/CodeStorm"
-        // },
-        // {
-        //   name:"DigCode",
-        //   contestID: "",
-        //   routerURL: "/login/DigCode"
-        // }
+        {
+          name:"CodeJam",
+          contestID: "",
+          routerURL: "/login/CodeJam"
+        },
+        {
+          name:"CodeRush",
+          contestID: "",
+          routerURL: "/login/CodeRush"
+        },
+        {
+          name:"Debugging",
+          contestID: "",
+          routerURL: "/login/Debugging"
+        },
+        {
+          name:"CodeStorm",
+          contestID: "",
+          routerURL: "/login/CodeStorm"
+        },
+        {
+          name:"DigCode",
+          contestID: "",
+          routerURL: "/login/DigCode"
+        }
       ],
+      data: {
+        is_admin: false,
+        action: "read",
+        is_practice: false
+      },
       component: "",
     }
   },
   mounted () {
     axios
-      .get('https://127.0.0.1:5000/get_results')
+      .post('https://127.0.0.1:5000/competition_ops',this.data)
       .then(response => {
         const newItem = {
-            id: response.data.id,
+            comp_id: response.data.comp_id,
             name: response.data.name,
-            routerURL: "/login/" + response.data.name
+            routerURL: "/login/" + response.data.comp_id
         };
         this.contests.push(newItem);
       })

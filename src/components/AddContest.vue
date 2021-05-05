@@ -14,14 +14,14 @@
       <div class="container">
         <input
           type="text"
-          v-model="competition_id"
+          v-model="content.competition_id"
           placeholder="Enter competitionID"
           required
           style="width: 100%"
         /><br />
         <input
           type="text"
-          v-model="compName"
+          v-model="content.compName"
           placeholder="Enter competition name"
           required
           style="width: 100%"
@@ -29,7 +29,7 @@
         <br />
         <input
           type="date"
-          v-model="date"
+          v-model="content.date"
           placeholder="Enter Date"
           required
           style="width: 100%"
@@ -37,7 +37,7 @@
         <br />
         <input
           type="text"
-          v-model="description"
+          v-model="content.description"
           placeholder="Enter description"
           required
           style="width: 100%"
@@ -45,7 +45,7 @@
         <br />
         <input
           type="text"
-          v-model="conductedBy"
+          v-model="content.conductedBy"
           placeholder="ConductedBy"
           required
           style="width: 100%"
@@ -53,23 +53,26 @@
         <br />
         <input
           type="text"
-          v-model="department"
+          v-model="content.department"
           placeholder="Enter Department"
           required
           style="width: 100%"
         />
         <br />
-        <input type="checkbox" v-model="is_practice" /> Is it a practice contest ? <br /><br />
+        <input type="checkbox" v-model="content.is_practice" /> Is it a practice contest
+        ? <br /><br />
 
-        <button
+        <button type="submit"
           v-if="
-            this.competition_id &&
-            this.compName &&
-            this.department &&
-            this.description &&
-            this.date &&
-            this.conductedBy"
-          @click="add">
+            this.content.competition_id &&
+            this.content.compName &&
+            this.content.department &&
+            this.content.description &&
+            this.content.date &&
+            this.content.conductedBy
+          "
+          @click="add"
+        >
           Submit
         </button>
       </div>
@@ -80,27 +83,37 @@
 
 <script>
 import AdminPanel from "./AdminPanel";
-
+import axios from 'axios';
 export default {
   components: {
     AdminPanel: AdminPanel,
   },
   data() {
     return {
-      competition_id: null,
-      compName: null,
-      department: null,
-      description: null,
-      date: null,
-      conductedBy: null,
-      is_practice: null,
+      content: {
+        competition_id: null,
+        compName: null,
+        department: null,
+        description: null,
+        date: null,
+        conductedBy: null,
+        is_practice: null,
+      },
       component: "",
     };
   },
   methods: {
-    add: function () {
-      alert('Contest added succesfully')
-      this.$router.replace("/contests");
+    add(e) {
+      axios
+        .post("http://127.0.0.1:5000/get_data/", this.content)
+        .then((response) => {
+          if (response.data.stdout == "") {
+            alert("Contest added successfully !!!");
+          }
+          this.$router.replace("/contests");
+          // console.log(e);
+        });
+      e.preventDefault();
     },
     close: function () {
       this.$router.go(-1);

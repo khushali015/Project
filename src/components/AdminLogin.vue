@@ -1,6 +1,6 @@
 <template>
   <div id="id01" class="modal">
-    <form v-if="!submitted" class="modal-content animate" method="post" style="width: 25%">
+    <form class="modal-content animate" method="post" style="width: 25%">
       <div class="imgcontainer">
         <span
           @click="close"
@@ -14,12 +14,12 @@
       <div class="container">
         <input
           type="text"
-          v-model="userid.userID"
+          v-model="userid.user_id"
           placeholder="Enter ID"
           required
           style="width: 100%"
         /><br>
-        <button v-if="userid.userID" @click="login">Login</button>
+        <button v-if="userid.user_id" @click="login">Login</button>
       </div>
     </form>
   </div>
@@ -31,22 +31,24 @@ export default {
   data () {
     return {
       userid: {
-        userID: ""
-      }
+        user_id: "",
+        is_admin: true
+      },
+      comp_id: null
     }
   },
   methods: {
     login(e) {
-      // this.$router.replace('/adminpanel') 
-      axios
-        .post("http://127.0.0.1:5000/get_data/", this.userid)
-        .then((response) => {
-          this.$router.replace('/adminpanel')                             //change
-          if (response.data.stdout == "") {
-            this.output = response.data.outcome + response.data.cmpinfo;
-          } else this.output = response.data.stdout;
-          // console.log(e);
-        });
+      this.$router.replace('/adminpanel') 
+      // axios
+      //   .post("http://127.0.0.1:5000/authenticate/", this.userid)
+      //   .then((response) => {
+      //     this.comp_id = response.data.comp_id;
+      //     if (response.data.success == true) {
+      //       this.$router.replace('/adminpanel'); 
+      //     }
+      //     // console.log(e);
+      //   });
       e.preventDefault();
     },
     close: function () {

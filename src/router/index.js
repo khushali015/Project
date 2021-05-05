@@ -18,6 +18,7 @@ import Contests from '../components/Contests'
 import Questions from '../components/Questions'
 import Submissions from '../components/Submissions'
 import CodeEditor from '../components/CodeEditor'
+import DetailsOfContest from '../components/DetailsOfContest'
 
 Vue.use(Router)
 
@@ -112,6 +113,11 @@ export default new Router({
       path: '/codeeditor',
       name: 'CodeEditor',
       component: CodeEditor
+    },
+    {
+      path: '/detailsofcontest/:name',
+      name: 'DetailsOfContest',
+      component: DetailsOfContest
     }
   ],
   mode: 'history'

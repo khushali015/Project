@@ -32,13 +32,14 @@ export default {
   data () {
     return {
       userid: {
-         userID: null
+         userID: null,
+         is_admin: false
       }
     }
   },
   methods: {
     login(e) {
-      // this.$router.replace('/practice') 
+      this.$router.replace('/practice'); 
       axios
         .post("http://127.0.0.1:5000/get_data/", this.userid)
         .then((response) => {

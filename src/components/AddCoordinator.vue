@@ -7,56 +7,69 @@
           style="cursor: pointer"
           class="close"
           title="Close page"
-          >×</span>
+          >×</span
+        >
         <h1 class="avatar">INOJ</h1>
       </div>
       <div class="container">
         <input
           type="text"
-          v-model="coord_id"
+          v-model="content.coord_id"
           placeholder="Enter ID"
           required
-          style="width: 100%"><br />
+          style="width: 100%"
+        /><br />
         <input
           type="text"
-          v-model="competition_id"
-          placeholder="Enter FirstName"
+          v-model="content.competition_id"
+          placeholder="Enter Competition ID"
           required
-          style="width:100%;"> <br>
-        <button v-if="this.coord_id &&
-                      this.competition_id"
-                      @click="add">Submit                      
+          style="width: 100%"
+        />
+        <br />
+        <button v-if="this.content.coord_id && this.content.competition_id" @click="add">
+          Submit
         </button>
       </div>
     </form>
-    <component :is="component"/>
+    <component :is="component" />
   </div>
 </template>
 
 <script>
-import AdminPanel from './AdminPanel'
-
+import AdminPanel from "./AdminPanel";
+import axios from 'axios';
 export default {
   components: {
-    'AdminPanel': AdminPanel
+    AdminPanel: AdminPanel,
   },
-  data () {
+  data() {
     return {
-      coord_id: null,
-      competition_id: null,
-      component: ''
-    }
+      content: {
+        coord_id: null,
+        competition_id: null,
+      },
+      component: "",
+    };
   },
   methods: {
-    add: function () {
-      alert('Co-ordinator added successfully')
-      this.$router.replace('/users')
+    add(e) {
+      axios
+        .post("http://127.0.0.1:5000/get_data/", this.content)
+        .then((response) => {
+          if (response.data.stdout == "") {
+            alert("Co-ordinator added successfully !!!");
+          }
+          this.$router.replace("/users");
+          // console.log(e);
+        });
+      e.preventDefault();
     },
     close: function () {
-      this.$router.go(-1)
-    }
-  }
-}
+      this.$router.go(-1);
+    },
+  },
+};
 </script>
 
 <style scoped>
